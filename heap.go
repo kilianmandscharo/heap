@@ -11,7 +11,7 @@ func New(a []int) []int {
 		largest := largestChild(a, i, len(a))
 		if largest != i {
 			a[largest], a[i] = a[i], a[largest]
-			downheap(a, largest, len(a))
+			Downheap(a, largest, len(a))
 		}
 	}
 	return a
@@ -19,7 +19,7 @@ func New(a []int) []int {
 
 func Insert(heap []int, val int) []int {
 	heap = append(heap, val)
-	upheap(heap)
+	Upheap(heap)
 	return heap
 }
 
@@ -30,11 +30,11 @@ func Extract(heap []int) (int, bool) {
 	val := heap[0]
 	heap[0] = heap[len(heap)-1]
 	heap = heap[:len(heap)-1]
-	downheap(heap, 0, len(heap))
+	Downheap(heap, 0, len(heap))
 	return val, true
 }
 
-func upheap(heap []int) {
+func Upheap(heap []int) {
 	i := len(heap) - 1
 	parent := (i - 1) / 2
 	for i > 0 && heap[parent] < heap[i] {
@@ -44,7 +44,7 @@ func upheap(heap []int) {
 	}
 }
 
-func downheap(heap []int, i, n int) {
+func Downheap(heap []int, i, n int) {
 	largest := largestChild(heap, i, n)
 	for largest != i {
 		heap[largest], heap[i] = heap[i], heap[largest]
